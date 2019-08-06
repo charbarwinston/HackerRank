@@ -1,17 +1,12 @@
-package app;
+package app.challenges;
 
 import java.util.Arrays;
 
-public class MiniMaxSum {
-    public static void main(String[] args) throws Exception {
-        int[] arr = {5,4,4,5,5};
-        miniMaxSum(arr);
-    }
-
-    static void miniMaxSum(int[] arr) {
+public class Challenge8MiniMaxSum {
+    public void miniMaxSum(int[] arr) {
+        //I'm proud of this one.
         long highSum = Long.MIN_VALUE;
         long lowSum = Long.MAX_VALUE;
-
         long[] longArray = Arrays.stream(arr).mapToLong(i -> i).toArray();
         long totalSum = Arrays.stream(longArray).sum();
         for (Long x : longArray){
