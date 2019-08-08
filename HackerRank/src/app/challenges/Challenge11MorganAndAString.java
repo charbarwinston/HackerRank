@@ -1,32 +1,50 @@
 package app.challenges;
 
-import javax.swing.text.AbstractDocument.LeafElement;
+//This one is incredibly poorly written. I had to resort to many discussion boards before figuring this one out. Bad job question writer.
 
 public class Challenge11MorganAndAString {
-    public String morganAndString(String a, String b) {
-        a = a + 'z';
-        b = b + 'z';
-        String result = "";
-        while (a.length() > 0 && b.length() > 0){
-            if (a.charAt(0) > b.charAt(0)){
-                result = result + b.charAt(0);
-                if (b.length() != 0){
-                    b = b.substring(1);
+    public String morganAndString(String A, String B) {
+        int i = 0, j = 0;
+        StringBuffer sb = new StringBuffer();
+
+        while(i < A.length() && j < B.length()) {
+            if (A.charAt(i) < B.charAt(j)) {
+                sb.append(A.charAt(i++));
+            } else if (A.charAt(i) > B.charAt(j)) {
+                sb.append(B.charAt(j++));
+            } else {
+                int x = i, y = j;
+                char a = A.charAt(i);
+                for(; x < A.length() && y < B.length(); x++, y++) {
+                    if (A.charAt(x) != B.charAt(y)) {
+                        break;
+                    } else if (A.charAt(x) > a) {
+                        sb.append(A.substring(i, x)).append(B.substring(j, y));
+                        i = x; j = y;
+                        a = A.charAt(x);
+                    }
                 }
-            }
-            else if (a.charAt(0) < b.charAt(0)){
-                result = result + a.charAt(0);
-                if (a.length() != 0){
-                    a = a.substring(1);
-                }
-            }
-            else {
-                result = result + a.charAt(0);
-                if (a.length() != 0){
-                    a = a.substring(1);
+
+                if (x == A.length()) {
+                    sb.append(B.charAt(j));
+                    j++;
+                } else if (y == B.length()) {
+                    sb.append(A.charAt(i));
+                    i++;
+                } else {
+                    if (A.charAt(x) < B.charAt(y)) {
+                        sb.append(A.charAt(i));
+                        i++;
+                    } else {
+                        sb.append(B.charAt(j));
+                        j++;
+                    }
                 }
             }
         }
-        return ((result + a + b).replace("z", ""));
+
+        sb.append(A.substring(i)).append(B.substring(j));
+
+        return (sb.toString());
     }
 }
