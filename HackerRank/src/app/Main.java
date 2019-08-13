@@ -6,7 +6,7 @@ import app.challenges.*;
 public class Main {
         public static void main(String[] args) throws Exception {
             Challenge14Kangaroo challenge = new Challenge14Kangaroo();  
-            challenge.kangaroo(0, 2, 5, 3);
+            System.out.println(challenge.kangaroo(43, 2, 70, 2));
             
         }
 }
