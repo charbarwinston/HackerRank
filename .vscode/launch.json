@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - p6JavaDataTypes",
+            "request": "launch",
+            "mainClass": "app.javalanguage.p6JavaDataTypes",
+            "projectName": "HackerRank"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - p5JavaLoops2",
+            "request": "launch",
+            "mainClass": "app.javalanguage.p5JavaLoops2",
+            "projectName": "HackerRank"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - p3JavaOutputFormatting",
             "request": "launch",
             "mainClass": "app.javalanguage.p3JavaOutputFormatting",
