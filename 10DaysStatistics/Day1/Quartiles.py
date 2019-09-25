@@ -10,7 +10,6 @@ N.sort()
 
 Q1, Q2, Q3 = 0, 0, 0
 
-
 if (X % 2 == 0):
     Q1 = int(statistics.median(N[:int(len(N) / 2) - 1]))
     Q2 = int(statistics.median(N))
