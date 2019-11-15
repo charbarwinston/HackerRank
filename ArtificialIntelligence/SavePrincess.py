@@ -3,15 +3,12 @@
 def displayPathtoPrincess(n,grid):
     m = []
     p = []
-    print(enumerate(grid))
     for y, row in enumerate(grid):
-        print(y, row)
         if 'm' in row:
             m = [row.index('m'), y]
         if 'p' in row:
             p = [row.index('p'), y] 
    
-    print(m,p)
     while m[0] != p[0]:
         if m[0] < p[0]:
             print('RIGHT')
