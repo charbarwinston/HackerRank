@@ -4,21 +4,21 @@ from math import sqrt
 
 import tkinter as tk
 
-def updateLoop(root):
+def updateLoop(frame):
     def move():
         nextMove = next_move()
-        if nextMove == "Clean":
+        if nextMove == "CLEAN":
             cleanTile()
-        elif nextMove == "Right":
+        elif nextMove == "RIGHT":
             moveRight()
-        elif nextMove == "Left":
+        elif nextMove == "LEFT":
             moveLeft()
-        elif nextMove == "Down":
+        elif nextMove == "DOWN":
             moveUp()
-        elif nextMove == "Up":
+        elif nextMove == "UP":
             moveDown()
         updateBoard()
-        root.after(1000, move())
+        frame.after(1000, move)
     move()
 
 def next_move():
@@ -51,54 +51,54 @@ def next_move():
 def cleanTile():
     global pos
     global board
-    board[pos[0]][pos[1]] = "b"
+    board[pos[0]][pos[1]].replace('d','b')
 
 def moveRight():
     global pos
     global board
-    board[pos[0]][pos[1]] = "-"
-    if board[pos[0] + 1][pos[1]] != "d":
-        board[pos[0] + 1][pos[1]] = "b"
+    board[pos[0]][pos[1]] = '-'
+    if board[pos[0] + 1][pos[1]] != 'd':
+        board[pos[0] + 1][pos[1]] = 'b'
     pos = [pos[0] + 1, pos[1]]
 
 def moveLeft():
     global pos
     global board
     board[pos[0]][pos[1]] = "-"
-    if board[pos[0] - 1][pos[1]] != "d":
-        board[pos[0] - 1][pos[1]] = "b"
+    if board[pos[0] - 1][pos[1]] != 'd':
+        board[pos[0] - 1][pos[1]] = 'b'
     pos = [pos[0] - 1, pos[1]]
 
 def moveDown():
     global pos
     global board
     board[pos[0]][pos[1]] = "-"
-    if board[pos[0]][pos[1] + 1] != "d":
-        board[pos[0]][pos[1] + 1] = "b"
+    if board[pos[0]][pos[1] + 1] != 'd':
+        board[pos[0]][pos[1] + 1] = 'b'
     pos = [pos[0], pos[1] + 1]
 
 def moveUp():
     global pos
     global board
     board[pos[0]][pos[1]] = "-"
-    if board[pos[0]][pos[1] - 1] != "d":
-        board[pos[0]][pos[1] - 1] = "b"
+    if board[pos[0]][pos[1] - 1] != 'd':
+        board[pos[0]][pos[1] - 1] = 'b'
     pos = [pos[0], pos[1] - 1]
 
-def initializeBoard(board, root):
+def initializeBoard(board, frame):
     labels = {}
     for i, row in enumerate(board):
         for ci, char in enumerate(row):
             if i not in labels:
                 labels[i] = []
             if char == 'b':
-                labels[i].append(tk.Label(root, bg="blue", width=10, height=5))
+                labels[i].append(tk.Label(frame, bg="blue", width=10, height=5))
                 labels[i][ci].grid(row=i,column=ci)
             elif char == 'd':
-                labels[i].append(tk.Label(root, bg="brown", width=10, height=5))
+                labels[i].append(tk.Label(frame, bg="brown", width=10, height=5))
                 labels[i][ci].grid(row=i,column=ci)
             elif char == '-':
-                labels[i].append(tk.Label(root, bg="gray", width=10, height=5))
+                labels[i].append(tk.Label(frame, bg="gray", width=10, height=5))
                 labels[i][ci].grid(row=i,column=ci)
     return(labels)
 
@@ -127,6 +127,8 @@ board = [
 
 root = tk.Tk()
 root.title("BotClean")
-labels = initializeBoard(board,root)
-updateLoop(root)
+frame = tk.Frame()
+frame.pack()
+labels = initializeBoard(board,frame)
+updateLoop(frame)
 root.mainloop()
