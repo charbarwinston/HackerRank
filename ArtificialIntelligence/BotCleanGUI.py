@@ -148,10 +148,10 @@ def tileToGreen(frame):
                 break
 
 
-pos = [0,0]
+pos = [1,1]
 board = [
-        list("bd---"),
-        list("-d---"),
+        list("-----"),
+        list("dbd--"),
         list("---d-"),
         list("--d--"),
         list("----d")
