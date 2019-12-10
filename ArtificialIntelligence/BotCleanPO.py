@@ -3,99 +3,94 @@
 import random
 
 def next_move(posc, posr, board):
-    if board[posc][posr] == 'd':
-        print("CLEAN")
-        return
+    # if board[posc][posr] == 'd':
+    #     print("CLEAN")
+    #     return
+    updateMemory(board)
 
-    #down
+def updateMemory(board):
+    filename = "feedback.txt"
+    f0 = 0
+    try:
+        f = open(filename, "x")
+        fbBoard = board
+        fbBoardOut = ""
+        for i in range(5):
+            for j in range(5):
+             fbBoardOut = fbBoardOut + fbBoard[i][j]
+            fbBoardOut = fbBoardOut + '\n'
+        f.write(fbBoardOut)
+        return
+    except FileExistsError:
+        f0 = 1
+        f = open(filename, "r")
+        fbBoard = [j for j in f.read().split('\n')]
+        fbBoardList = []
+        for i in range(len(fbBoard)):
+            fbBoardList.append(list(fbBoard))
+        f.close()
+        f = open(filename, "w")
+        for i in range(5):
+            for j in range(5):
+                if list(fbBoardList[i])[j] == 'o':
+                    fbBoardList[i][j] = board[i][j]
+    fbBoardOut = ""
+    for i in range(5):
+        for j in range(5):
+            fbBoardOut = fbBoardList[i][j]
+        fbBoardOut = fbBoardOut + '\n'
+    f.write(fbBoardOut)
+    f.close()
+
+def lookForD(posc, posr, board):
     try:
         if board[posc+1][posr] == 'd':
-            print("DOWN")
-            return
+            return("DOWN")
     except:
         pass
-    #up
     try:
         if board[posc-1][posr] == 'd':
-            print("UP")
-            return
+            return("UP")
     except:
         pass
-    #right
     try:
         if board[posc][posr+1] == 'd':
-            print("RIGHT")
-            return
+            return("RIGHT")
     except:
         pass
-    #left
     try:
         if board[posc][posr-1] == 'd':
-            print("LEFT")
-            return
+            return("LEFT")
     except:
         pass
-    #down Right
     try:
         if board[posc+1][posr + 1] == 'd':
-            print("DOWN")
-            return
+            return("DOWN")
     except:
         pass
-    #up Right
     try:
         if board[posc-1][posr + 1] == 'd':
-            print("UP")
-            return
+            return("UP")
     except:
         pass
-    #down Left
     try:
         if board[posc+1][posr-1] == 'd':
-            print("DOWN")
-            return
+            return("DOWN")
     except:
         pass
-    #up left
     try:
         if board[posc - 1][posr-1] == 'd':
-            print("UP")
-            return
+            return("UP")
     except:
         pass 
 
-    while True:
-        try:
-            rand = random.randint(1,4)
-            if rand == 1:
-                if board[posc - 1][posr]:
-                    print("UP")
-                    return
-            elif rand == 2:
-                if board[posc + 1][posr]:
-                    print("DOWN")
-                    return
-            elif rand == 3:
-                if board[posc][posr+1]:
-                    print("RIGHT")
-                    return
-            elif rand == 4:
-                if board[posc][posr-1]:
-                    print("LEFT")
-                    return
-        except:
-            pass
-
-    
-
-
 pos = [0,1]
 board = [
-            "-b---",
-            "-----",
-            "-----",
-            "-d---",
-            "-----",
+            "-b--o",
+            "---oo",
+            "ooooo",
+            "ooooo",
+            "ooooo",
         ]
 
 next_move(pos[0], pos[1], board)
