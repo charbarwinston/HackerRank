@@ -86,8 +86,8 @@ def lookForD(posc, posr, board):
 
 pos = [0,1]
 board = [
-            "-b--o",
-            "---oo",
+            "b-ooo",
+            "--ooo",
             "ooooo",
             "ooooo",
             "ooooo",
